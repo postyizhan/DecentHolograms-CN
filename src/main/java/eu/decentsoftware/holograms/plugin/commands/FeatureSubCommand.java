@@ -11,7 +11,7 @@ import java.util.List;
 @CommandInfo(
 		permissions = "dh.command.features",
 		usage = "/dh features help",
-		description = "用于管理功能的所有子命令.",
+		description = "功能管理.",
 		aliases = {"feature", "f"}
 )
 public class FeatureSubCommand extends DecentCommand {
@@ -152,7 +152,7 @@ public class FeatureSubCommand extends DecentCommand {
             return (sender, args) -> {
                 sender.sendMessage("");
                 Common.tell(sender, " &3&lDECENT HOLOGRAMS HELP (FEATURES)");
-                Common.tell(sender, " 用于管理功能的所有子命令.");
+                Common.tell(sender, " 管理功能.");
                 sender.sendMessage("");
                 CommandBase command = PLUGIN.getCommandManager().getMainCommand().getSubCommand("features");
                 List<CommandBase> subCommands = Lists.newArrayList(command.getSubCommands());
@@ -181,7 +181,7 @@ public class FeatureSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.features.info",
             usage = "/dh feature info <feature>",
-            description = "功能信息.",
+            description = "查询某功能的信息.",
             minArgs = 1
     )
     public static class FeatureInfoSub extends DecentCommand {
@@ -199,7 +199,7 @@ public class FeatureSubCommand extends DecentCommand {
                 } else {
                     sender.sendMessage("");
                     Common.tell(sender, " &3&lFEATURE INFO");
-                    Common.tell(sender, " 功能帮助.");
+                    Common.tell(sender, " 信息：");
                     sender.sendMessage("");
                     Common.tell(sender, " &8• &7名称: &b%s", feature.getName());
                     Common.tell(sender, " &8• &7描述: &b%s", feature.getDescription());

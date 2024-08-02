@@ -190,7 +190,7 @@ public class HologramsCommand extends DecentCommand {
                     return true;
                 }
                 int currentPage = args.length >= 1 ? Validator.getInteger(args[0], "页面必须是有效整数.") - 1 : 0;
-                List<String> header = Lists.newArrayList("", " &3&lHOLOGRAM LIST - #" + (currentPage + 1), " &f现有全息图列表.", "");
+                List<String> header = Lists.newArrayList("", " &3&lHOLOGRAM LIST - #" + (currentPage + 1), " &f已创建的全息图：", "");
                 Function<Hologram, String> parseItem = hologram -> {
                     Location l = hologram.getLocation();
                     String name = (hologram.isEnabled() ? "" : "&c") + hologram.getName();
@@ -274,7 +274,7 @@ public class HologramsCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.convert",
             usage = "/dh convert <plugin> [file]",
-            description = "从给出的插件中转换全息图数据.",
+            description = "从其他插件转换全息图数据.",
             minArgs = 1
     )
     public static class ConvertSubCommand extends DecentCommand {
