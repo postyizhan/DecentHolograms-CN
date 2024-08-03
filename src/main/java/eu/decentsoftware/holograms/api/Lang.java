@@ -158,8 +158,8 @@ public class Lang {
     public static void sendUpdateMessage(@NonNull CommandSender sender) {
         Common.tell(sender,
                 "\n&f插件 &3DecentHolograms &f发现新版本！ 下载地址: \n&f- &7%s\n&f- &7%s",
-                "https://www.minebbs.com/resources/decentholograms.9059/"
-                "https://github.com/postyizhan/DecentHolograms-CN"
+                "https://www.minebbs.com/resources/decentholograms.9059/",
+                "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",
                 "https://modrinth.com/plugin/decentholograms"
         );
