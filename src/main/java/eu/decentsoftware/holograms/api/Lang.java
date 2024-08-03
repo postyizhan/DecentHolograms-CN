@@ -148,9 +148,9 @@ public class Lang {
 
     public static void sendVersionMessage(@NonNull CommandSender sender) {
         Common.tell(sender,
-                "\n&fThis server is running &3DecentHolograms v%s&f by &bd0by&f: \n&f- &7%s\n&f- &7%s",
-                "\n&f汉化：postyizhan",
+                "\n&fThis server is running &3DecentHolograms v%s&f by &bd0by&f: \n&f- &7%s\n&f- &7%s\n&f- &7%s",
                 DecentHologramsAPI.get().getPlugin().getDescription().getVersion(),
+                "\n&f汉化：postyizhan",
                 "https://www.minebbs.com/resources/decentholograms.9059/",
                 "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",
@@ -160,7 +160,7 @@ public class Lang {
 
     public static void sendUpdateMessage(@NonNull CommandSender sender) {
         Common.tell(sender,
-                "\n&f插件 &3DecentHolograms &f发现新版本！ 下载地址: \n&f- &7%s\n&f- &7%s",
+                "\n&f插件 &3DecentHolograms &f发现新版本！ 下载地址: \n&f- &7%s\n&f- &7%s\n&f- &7%s",
                 "https://www.minebbs.com/resources/decentholograms.9059/",
                 "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",
