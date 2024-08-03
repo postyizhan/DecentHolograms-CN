@@ -149,7 +149,10 @@ public class Lang {
     public static void sendVersionMessage(@NonNull CommandSender sender) {
         Common.tell(sender,
                 "\n&fThis server is running &3DecentHolograms v%s&f by &bd0by&f: \n&f- &7%s\n&f- &7%s",
+                "\n&f汉化：postyizhan",
                 DecentHologramsAPI.get().getPlugin().getDescription().getVersion(),
+                "https://www.minebbs.com/resources/decentholograms.9059/",
+                "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",
                 "https://modrinth.com/plugin/decentholograms"
         );
