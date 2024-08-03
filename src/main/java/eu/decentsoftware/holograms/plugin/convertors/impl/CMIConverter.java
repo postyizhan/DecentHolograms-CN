@@ -33,9 +33,9 @@ public class CMIConverter implements IConvertor {
 
     @Override
     public ConvertorResult convert(File file) {
-        Log.info("Converting CMI holograms...");
+        Log.info("正在导入 CMI 的悬浮字...");
         if (ConverterCommon.notValidFile(file, "holograms.yml")) {
-            Log.warn("Invalid file! Need 'holograms.yml'");
+            Log.warn("找不到文件! 你有 'holograms.yml' 吗？");
             return ConvertorResult.createFailed();
         }
 
@@ -44,14 +44,14 @@ public class CMIConverter implements IConvertor {
         for (String name : config.getKeys(false)) {
             // Skip Auto-generated holograms to change pages.
             if (name.endsWith("#>") || name.endsWith("#<")) {
-                Log.info("Skipping auto-generated next/prev page hologram '%s'...", name);
+                Log.info("跳过自动生成的下一页/上一页悬浮字 '%s' ...", name);
                 convertorResult.addSkipped();
                 continue;
             }
 
             Location loc = LocationUtils.asLocation(config.getString(name + ".Loc").replace(";", ":"));
             if (loc == null) {
-                Log.warn("Cannot convert '%s'! Invalid location.", name);
+                Log.warn("无法转换“%s”！位置无效.", name);
                 convertorResult.addFailed();
                 continue;
             }

@@ -33,13 +33,13 @@ public final class Validator {
     public static Hologram getHologram(String name) throws DecentCommandException {
         Hologram hologram = DECENT_HOLOGRAMS.getHologramManager().getHologram(name);
         if (hologram == null) {
-            throw new DecentCommandException("Hologram with that name couldn't be found.");
+            throw new DecentCommandException("未找到此名称的悬浮字.");
         }
         return hologram;
     }
 
     public static HologramPage getHologramPage(Hologram hologram, int index) throws DecentCommandException {
-        index = getIntegerInRange(index, 1, hologram.size(), "Page index must be in bounds of given hologram.");
+        index = getIntegerInRange(index, 1, hologram.size(), "页面索引必须在给定悬浮字的范围内.");
         return hologram.getPage(index);
     }
 
@@ -52,7 +52,7 @@ public final class Validator {
     }
 
     public static HologramLine getHologramLine(HologramPage page, int index) throws DecentCommandException {
-        return getHologramLine(page, index, "Hologram line couldn't be found.");
+        return getHologramLine(page, index, "未找到此悬浮字行.");
     }
 
     /*

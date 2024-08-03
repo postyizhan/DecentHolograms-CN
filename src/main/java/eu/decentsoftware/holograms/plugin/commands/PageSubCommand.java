@@ -118,7 +118,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.add",
             usage = "/dh page add <hologram> [content]",
-            description = "添加页面.",
+            description = "向悬浮字末尾插入新的一页.",
             aliases = {"append"},
             minArgs = 1
     )
@@ -169,7 +169,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.insert",
             usage = "/dh page insert <hologram> <page> [content]",
-            description = "插入页面.",
+            description = "向悬浮字中插入新的一页.",
             minArgs = 2
     )
     static class PageInsertSub extends DecentCommand {
@@ -228,7 +228,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.remove",
             usage = "/dh page remove <hologram> <page>",
-            description = "移除页面.",
+            description = "从悬浮字中删去指定页.",
             aliases = {"rm", "rem", "del", "delete"},
             minArgs = 2
     )
@@ -265,7 +265,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.swap",
             usage = "/dh page swap <hologram> <page1> <page2>",
-            description = "交换两页位置.",
+            description = "将 <page1> 与 <page2> 交换.",
             minArgs = 3
     )
     static class PageSwapSub extends DecentCommand {
@@ -324,7 +324,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.switch",
             usage = "/dh page switch <hologram> <page> [player]",
-            description = "切换到页面.",
+            description = "切换至悬浮字中的其他页.",
             aliases = {"go", "view"},
             minArgs = 2
     )
@@ -365,7 +365,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.actions",
             usage = "/dh page actions <hologram> <page> <clickType> [listPage]",
-            description = "列出所有点击动作.",
+            description = "按指定 <ClickType> 为悬浮字增加点击操作.",
             playerOnly = true,
             minArgs = 3
     )
@@ -412,7 +412,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.clearactions",
             usage = "/dh page clearactions <hologram> <page> <clickType>",
-            description = "清除所有点击动作.",
+            description = "清理第 <page> 页中所有 <clickType> 的操作.",
             minArgs = 3
     )
     static class PageClearActionsSub extends DecentCommand {
@@ -456,7 +456,7 @@ public class PageSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.pages.addactions",
             usage = "/dh page addaction <hologram> <page> <clickType> <action>",
-            description = "新增点击动作.",
+            description = "向悬浮字页中加入指定 <clickType> 的 <action>.",
             minArgs = 4
     )
     static class PageAddActionSub extends DecentCommand {

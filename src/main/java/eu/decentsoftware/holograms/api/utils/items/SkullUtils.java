@@ -82,7 +82,7 @@ public final class SkullUtils {
 						try {
 							return (String) PROPERTY_VALUE_METHOD.invoke(property);
 						} catch (IllegalAccessException | InvocationTargetException e) {
-							Log.error("Failed to invoke Property#value", e);
+							Log.error("调用 Property#value 失败", e);
 						}
 						return null;
 					};
@@ -95,7 +95,7 @@ public final class SkullUtils {
 				return VALUE_RESOLVER.apply(property.iterator().next());
 			}
 		} catch (Exception e) {
-			Log.error("An exception occurred while retrieving skull texture", e);
+			Log.error("检索头颅纹理时发生异常", e);
 		}
 		return null;
 	}
@@ -158,7 +158,7 @@ public final class SkullUtils {
 				itemStack.setDurability((short) SkullType.PLAYER.ordinal());
 			}
 		} catch (Exception e) {
-			Log.error("An exception occurred while setting skull texture", e);
+			Log.error("设置头颅纹理时发生异常", e);
 		}
 	}
 
@@ -227,7 +227,7 @@ public final class SkullUtils {
 
 			return data.get("value").toString();
 		} catch (Exception e) {
-			Log.warn("Failed to fetch texture for player %s", username, e);
+			Log.warn("无法获取纹理： %s", username, e);
 		}
 		return null;
 	}
@@ -252,7 +252,7 @@ public final class SkullUtils {
 				return jsonData.get("id").toString();
 			}
 		} catch (Exception e) {
-			Log.warn("Failed to fetch UUID for player %s", playerName, e);
+			Log.warn("无法获取UUID： %s", playerName, e);
 		}
 		return null;
 	}

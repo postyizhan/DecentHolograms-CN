@@ -26,9 +26,9 @@ public class FutureHologramsConverter implements IConvertor {
 
     @Override
     public ConvertorResult convert(File file) {
-        Log.info("Converting FutureHolograms holograms...");
+        Log.info("正在导入 FutureHolograms 的悬浮字...");
         if (ConverterCommon.notValidFile(file, "holograms.yml")) {
-            Log.warn("Invalid file! Need 'holograms.yml");
+            Log.warn("找不到文件! 你有 'holograms.yml' 吗？");
             return ConvertorResult.createFailed();
         }
 
@@ -37,7 +37,7 @@ public class FutureHologramsConverter implements IConvertor {
         for (String name : config.getKeys(false)) {
             Location loc = LocationUtils.asLocation(config.getString(name + ".location").replace(",", ":"));
             if (loc == null) {
-                Log.info("Skipping auto-generated next/prev page hologram '%s'...", name);
+                Log.info("跳过自动生成的下一页/上一页悬浮字 '%s' ...", name);
                 convertorResult.addFailed();
                 continue;
             }

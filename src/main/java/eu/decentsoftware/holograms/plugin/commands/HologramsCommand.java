@@ -172,7 +172,7 @@ public class HologramsCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.list",
             usage = "/dh list [page]",
-            description = "列出所有全息图.",
+            description = "列出悬浮字文件中载入的所有悬浮字.",
             playerOnly = true
     )
     public static class ListSubCommand extends DecentCommand {
@@ -186,11 +186,11 @@ public class HologramsCommand extends DecentCommand {
             return (sender, args) -> {
                 final List<Hologram> holograms = Lists.newArrayList(PLUGIN.getHologramManager().getHolograms());
                 if (holograms.isEmpty()) {
-                    Common.tell(sender, "%s当前没有全息图.", Common.PREFIX);
+                    Common.tell(sender, "%s当前没有悬浮字.", Common.PREFIX);
                     return true;
                 }
                 int currentPage = args.length >= 1 ? Validator.getInteger(args[0], "页面必须是有效整数.") - 1 : 0;
-                List<String> header = Lists.newArrayList("", " &3&lHOLOGRAM LIST - #" + (currentPage + 1), " &f已创建的全息图：", "");
+                List<String> header = Lists.newArrayList("", " &3&lHOLOGRAM LIST - #" + (currentPage + 1), " &f已创建的悬浮字：", "");
                 Function<Hologram, String> parseItem = hologram -> {
                     Location l = hologram.getLocation();
                     String name = (hologram.isEnabled() ? "" : "&c") + hologram.getName();
@@ -274,7 +274,7 @@ public class HologramsCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.convert",
             usage = "/dh convert <plugin> [file]",
-            description = "从其他插件转换全息图数据.",
+            description = "从其他悬浮字插件导入悬浮字数据.",
             minArgs = 1
     )
     public static class ConvertSubCommand extends DecentCommand {

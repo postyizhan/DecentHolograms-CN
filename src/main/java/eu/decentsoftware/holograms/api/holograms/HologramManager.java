@@ -186,7 +186,9 @@ public class HologramManager extends Ticked {
         }
 
         int counter = 0;
-        Log.info("Loading holograms... ");
+        Log.info("正在加载浮空字... ");
+        Log.info("汉化：postyizhan");
+        Log.info("汉化仓库：https://github.com/postyizhan/DecentHolograms-CN");
         for (File file : files) {
             String filePath = FileUtils.getRelativePath(file, folder);
             try {
@@ -201,10 +203,10 @@ public class HologramManager extends Ticked {
                 toLoad.get(worldName).add(filePath);
                 counter++;
             } catch (Exception e) {
-                Log.warn("Failed to load hologram from file '%s'!", e, filePath);
+                Log.warn("从 '%s' 加载浮空字失败!", e, filePath);
             }
         }
-        Log.info("Loaded %d holograms!", counter);
+        Log.info("已加载 %d 个浮空字!", counter);
     }
 
     /**

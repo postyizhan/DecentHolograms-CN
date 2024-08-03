@@ -71,7 +71,7 @@ public class HealingDisplayFeature extends AbstractFeature implements Listener {
 
 	@Override
 	public String getDescription() {
-		return "Spawn a temporary hologram displaying heals.";
+		return "在恢复生命时生成悬浮字显示回复血量.";
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)

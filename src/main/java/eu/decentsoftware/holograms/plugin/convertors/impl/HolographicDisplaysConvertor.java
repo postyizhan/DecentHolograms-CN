@@ -30,9 +30,9 @@ public class HolographicDisplaysConvertor implements IConvertor {
 
 	@Override
 	public ConvertorResult convert(final File file) {
-		Log.info("Converting HolographicDisplays holograms...");
+		Log.info("正在导入 HolographicDisplays 的悬浮字...");
 		if (ConverterCommon.notValidFile(file, "database.yml")) {
-			Log.warn("Invalid file! Need 'database.yml'");
+			Log.warn("找不到文件! 你有 'database.yml' 吗？");
 			return ConvertorResult.createFailed();
 		}
 
@@ -41,7 +41,7 @@ public class HolographicDisplaysConvertor implements IConvertor {
 		for (String name : config.getKeys(false)) {
 			Location location = parseLocation(config, name);
 			if(location == null){
-				Log.warn("Cannot convert '%s'! Invalid location.", name);
+				Log.warn("无法转换“%s”！位置无效.", name);
 				convertorResult.addFailed();
 				continue;
 			}

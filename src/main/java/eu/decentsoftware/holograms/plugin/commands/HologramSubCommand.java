@@ -84,7 +84,7 @@ public class HologramSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.holograms.update",
             usage = "/dh hologram update <hologram>",
-            description = "刷新某全息图.",
+            description = "手动刷新悬浮字.",
             minArgs = 1
     )
     public static class HologramUpdateSub extends DecentCommand {
@@ -116,7 +116,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.align",
 			usage = "/dh hologram align <hologram> <X|Y|Z|XZ|FACE> <otherHologram>",
-			description = "将全息图与指定轴上的其他全息图或其面对角度对齐.",
+			description = "将指定悬浮字移动到其他悬浮字按特定轴对齐的位置上.",
 			minArgs = 3
 	)
 	public static class HologramAlignSub extends DecentCommand {
@@ -186,7 +186,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.center",
 			usage = "/dh hologram center <hologram>",
-			description = "将全息图移动到方块中心位置.",
+			description = "将悬浮字中心水平移动到当前所在方块正中央.",
 			minArgs = 1
 	)
 	public static class HologramCenterSub extends DecentCommand {
@@ -225,7 +225,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.clone",
 			usage = "/dh hologram clone <hologram> <name> [temp] [-l:<world:x:y:z>]",
-			description = "复制全息图.",
+			description = "复制已有悬浮字.",
 			aliases = {"copy"},
 			minArgs = 2
 	)
@@ -293,7 +293,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.create",
 			usage = "/dh hologram create <name> [-l:world:x:y:z] [content]",
-			description = "创建一个全息图.",
+			description = "创建新的悬浮字.",
 			aliases = {"new", "c"},
 			minArgs = 1
 	)
@@ -376,7 +376,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.delete",
 			usage = "/dh hologram delete <hologram>",
-			description = "删除一个全息图.",
+			description = "删除现存的悬浮字.",
 			aliases = {"del", "remove", "rem"},
 			minArgs = 1
 	)
@@ -409,7 +409,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.disable",
 			usage = "/dh hologram disable <hologram>",
-			description = "关闭一个全息图.",
+			description = "禁用指定的悬浮字.",
 			aliases = {"off"},
 			minArgs = 1
 	)
@@ -445,7 +445,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setdisplayrange",
 			usage = "/dh hologram setdisplayrange <hologram> <range>",
-			description = "设置某全息图显示范围.",
+			description = "设置玩家可见悬浮字的最大范围.",
 			aliases = {"displayrange"},
 			minArgs = 2
 	)
@@ -478,7 +478,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.downorigin",
 			usage = "/dh hologram downorigin <hologram> <true|false>",
-			description = "设定全息图的原点状态.",
+			description = "设置下行插入的状态.",
 			aliases = {"setdownorigin"},
 			minArgs = 2
 	)
@@ -519,7 +519,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.enable",
 			usage = "/dh hologram enable <hologram>",
-			description = "开启一个全息图.",
+			description = "启用指定的悬浮字.",
 			aliases = {"on"},
 			minArgs = 1
 	)
@@ -555,7 +555,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setfacing",
 			usage = "/dh hologram setfacing <hologram> <facing>",
-			description = "设置某全息图朝向.",
+			description = "设置悬浮字的面朝方向（yaw）.",
 			aliases = {"facing", "setface", "face"},
 			minArgs = 2
 	)
@@ -605,7 +605,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.addflag",
 			usage = "/dh hologram addflag <hologram> <flag>",
-			description = "为某全息图添加标志.",
+			description = "向指定悬浮字添加标志.",
 			minArgs = 2
 	)
 	public static class HologramFlagAddSub extends DecentCommand {
@@ -646,7 +646,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.removeflag",
 			usage = "/dh hologram removeflag <hologram> <flag>",
-			description = "为某全息图移除标志.",
+			description = "将悬浮字中的指定标志删去.",
 			aliases = {"remflag"},
 			minArgs = 2
 	)
@@ -731,7 +731,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.info",
 			usage = "/dh hologram info <hologram>",
-			description = "显示某全息图的信息.",
+			description = "显示悬浮字的详细信息.",
 			minArgs = 1
 	)
 	public static class HologramInfoSub extends DecentCommand {
@@ -767,7 +767,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.lines",
 			usage = "/dh hologram lines <hologram> <page> [listPage]",
-			description = "列出全息图中所有行.",
+			description = "列出悬浮字所有插入的文本行.",
 			aliases = {"line", "l"},
 			minArgs = 2
 	)
@@ -840,7 +840,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.movehere",
 			usage = "/dh hologram movehere <hologram>",
-			description = "将全息图移动到你所处的位置.",
+			description = "将指定悬浮字传送至你的位置.",
 			aliases = {"mvhr"},
 			playerOnly = true,
 			minArgs = 1
@@ -881,7 +881,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.move",
 			usage = "/dh hologram move <hologram> <x> <y> <z>",
-			description = "将全息图移动到坐标.",
+			description = "将悬浮字移动至指定坐标.",
 			aliases = {"mv"},
 			minArgs = 4
 	)
@@ -949,7 +949,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.near",
 			usage = "/dh hologram near <range>",
-			description = "列出你周围的全息图.",
+			description = "列出指定范围内存在的悬浮字.",
 			playerOnly = true,
 			minArgs = 1
 	)
@@ -971,7 +971,7 @@ public class HologramSubCommand extends DecentCommand {
 
 		@Override
 		public String getDescription() {
-			return "列出你周围的全息图.";
+			return "列出指定范围内存在的悬浮字.";
 		}
 
 		@Override
@@ -1027,7 +1027,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setpermission",
 			usage = "/dh hologram setpermission <hologram> [permission]",
-			description = "设置某全息图的权限.",
+			description = "设置浏览当前悬浮字所需的权限.",
 			aliases = {"permission", "setperm", "perm"},
 			minArgs = 1
 	)
@@ -1063,7 +1063,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.teleport",
 			usage = "/dh hologram teleport <hologram>",
-			description = "传送到一个全息图.",
+			description = "将你传送至指定悬浮字的位置.",
 			playerOnly = true,
 			aliases = {"tp", "tele"},
 			minArgs = 1
@@ -1096,7 +1096,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setupdateinterval",
 			usage = "/dh hologram setupdateinterval <hologram> <interval>",
-			description = "设置全息图刷新间隔.",
+			description = "设置更新间隔.",
 			aliases = {"updateinterval"},
 			minArgs = 2
 	)
@@ -1109,7 +1109,7 @@ public class HologramSubCommand extends DecentCommand {
 		@Override
 		public CommandHandler getCommandHandler() {
 			return (sender, args) -> {
-				final int interval = Validator.getInteger(args[1], 1, 1200, "Interval must be a valid number between 1 and 1200.");
+				final int interval = Validator.getInteger(args[1], 1, 1200, "必须是介于1和1200之间的有效数字.");
 				final Hologram hologram = Validator.getHologram(args[0], Lang.HOLOGRAM_DOES_NOT_EXIST.getValue());
 				hologram.setUpdateInterval(interval);
 				hologram.save();
@@ -1129,7 +1129,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setupdaterange",
 			usage = "/dh hologram setupdaterange <hologram> <range>",
-			description = "设置全息图的更新范围.",
+			description = "设置玩家可看见悬浮字刷新的最大范围.",
 			aliases = {"updaterange"},
 			minArgs = 2
 	)
@@ -1162,7 +1162,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.rename",
 			usage = "/dh hologram rename <hologram> <new_name>",
-			description = "重命名某全息图.",
+			description = "重命名现存的悬浮字.",
 			minArgs = 2
 	)
 	public static class HologramRenameSub extends DecentCommand {

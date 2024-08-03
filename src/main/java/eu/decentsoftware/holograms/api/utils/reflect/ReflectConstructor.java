@@ -23,7 +23,7 @@ public class ReflectConstructor {
             constructor = clazz.getDeclaredConstructor(parameterTypes);
             constructor.setAccessible(true);
         } catch (NoSuchMethodException e) {
-            Log.error("Failed to find constructor for class %s with parameter types %s", clazz.getName(), parameterTypes);
+            Log.error("无法为类 %s 找到具有参数类型 %s 的构造函数", clazz.getName(), parameterTypes);
         }
     }
 
@@ -34,7 +34,7 @@ public class ReflectConstructor {
         try {
             object = constructor.newInstance(args);
         } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            Log.error("Failed to create new instance of class %s with parameter types %s", clazz.getName(), parameterTypes);
+            Log.error("无法为类 %s 创建具有参数类型 %s 的新实例", clazz.getName(), parameterTypes);
         }
         return object == null ? null : (T) object;
     }
