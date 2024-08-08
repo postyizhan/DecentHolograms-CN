@@ -23,7 +23,8 @@ public class ReflectConstructor {
             constructor = clazz.getDeclaredConstructor(parameterTypes);
             constructor.setAccessible(true);
         } catch (NoSuchMethodException e) {
-            Log.error("无法为类 %s 找到具有参数类型 %s 的构造函数", clazz.getName(), parameterTypes);
+            Log.error("无法为类 %s 找到具有参数类型 %s 的构造函数",
+                    e, clazz.getName(), parameterTypesToString());
         }
     }
 
@@ -34,9 +35,18 @@ public class ReflectConstructor {
         try {
             object = constructor.newInstance(args);
         } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            Log.error("无法为类 %s 创建具有参数类型 %s 的新实例", clazz.getName(), parameterTypes);
+            Log.error("无法为类 %s 创建具有参数类型 %s 的新实例",
+                    e, clazz.getName(), parameterTypesToString());
         }
         return object == null ? null : (T) object;
+    }
+
+    private String parameterTypesToString() {
+        StringBuilder builder = new StringBuilder();
+        for (Class<?> parameterType : parameterTypes) {
+            builder.append(parameterType.getName()).append(", ");
+        }
+        return builder.toString();
     }
 
 }
