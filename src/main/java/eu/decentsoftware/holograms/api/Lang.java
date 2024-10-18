@@ -150,7 +150,7 @@ public class Lang {
         Common.tell(sender,
                 "\n&fThis server is running &3DecentHolograms v%s&f by &bd0by&f: \n&f- &7%s\n&f- &7%s\n&f- &7%s",
                 DecentHologramsAPI.get().getPlugin().getDescription().getVersion(),
-                "\n&f汉化：postyizhan",
+                "\n&f汉化：postyizhan(驿站忆行) QQ群：611076407",
                 "https://www.minebbs.com/resources/decentholograms.9059/",
                 "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",

@@ -187,8 +187,9 @@ public class HologramManager extends Ticked {
 
         int counter = 0;
         Log.info("正在加载浮空字... ");
-        Log.info("汉化 by postyizhan");
+        Log.info("汉化 by postyizhan(驿站忆行)");
         Log.info("汉化仓库 https://github.com/postyizhan/DecentHolograms-CN");
+        Log.info("QQ群 611076407");
         for (File file : files) {
             String filePath = FileUtils.getRelativePath(file, folder);
             try {
