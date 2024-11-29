@@ -299,21 +299,13 @@ public class PageSubCommand extends DecentCommand {
             return (sender, args) -> {
                 if (args.length == 1) {
                     return TabCompleteHandler.getPartialMatches(args[0], PLUGIN.getHologramManager().getHologramNames());
-                } else if (args.length == 2) {
+                } else if (args.length == 2 || args.length == 3) {
                     Hologram hologram = PLUGIN.getHologramManager().getHologram(args[0]);
                     if (hologram != null) {
                         return TabCompleteHandler.getPartialMatches(args[1], IntStream
-                            .rangeClosed(1, hologram.size())
-                            .boxed().map(String::valueOf)
-                            .collect(Collectors.toList()));
-                    }
-                } else if (args.length == 3) {
-                    Hologram hologram = PLUGIN.getHologramManager().getHologram(args[0]);
-                    if (hologram != null) {
-                        return TabCompleteHandler.getPartialMatches(args[1], IntStream
-                            .rangeClosed(1, hologram.size())
-                            .boxed().map(String::valueOf)
-                            .collect(Collectors.toList()));
+                                .rangeClosed(1, hologram.size())
+                                .boxed().map(String::valueOf)
+                                .collect(Collectors.toList()));
                     }
                 }
                 return null;
@@ -480,12 +472,13 @@ public class PageSubCommand extends DecentCommand {
                     return true;
                 }
                 String actionString = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
-                Action action = new Action(actionString);
-                if (!action.isValid()) {
+                try {
+                    Action action = new Action(actionString);
+                    page.addAction(clickType, action);
+                } catch (IllegalArgumentException e) {
                     Lang.ACTION_DOES_NOT_EXIST.send(sender);
                     return true;
                 }
-                page.addAction(clickType, action);
                 hologram.save();
                 Lang.ACTION_ADDED.send(sender);
                 return true;
