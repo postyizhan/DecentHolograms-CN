@@ -26,9 +26,9 @@ public class HologramsConvertor implements IConvertor {
 
     @Override
     public ConvertorResult convert(final File file) {
-        Log.info("Converting Holograms holograms...");
+        Log.info("正在导入 Holograms 的悬浮字...");
         if (ConverterCommon.notValidFile(file, "holograms.yml")) {
-            Log.warn("Invalid file! Need 'holograms.yml'");
+            Log.warn("找不到文件! 你有 'holograms.yml' 吗？");
             return ConvertorResult.createFailed();
         }
 
@@ -40,7 +40,7 @@ public class HologramsConvertor implements IConvertor {
             for (String id : hologramsSection.getKeys(false)) {
                 Location location = LocationUtils.asLocation(hologramsSection.getString(id + ".location"), ";");
                 if (location == null) {
-                    Log.warn("Cannot convert '%s'! Invalid location.", id);
+                    Log.warn("无法转换“%s”！位置无效.", id);
                     convertorResult.addFailed();
                     continue;
                 }

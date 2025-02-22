@@ -42,7 +42,7 @@ public class FileUtils {
 				}
 			}
 		} else if (createDir && root.mkdirs()) {
-			Log.info("Created directory %s", root.getPath());
+			Log.info("创建文件夹 %s", root.getPath());
 		}
 		return files;
 	}

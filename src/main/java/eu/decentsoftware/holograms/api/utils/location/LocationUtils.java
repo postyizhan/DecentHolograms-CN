@@ -32,7 +32,7 @@ public class LocationUtils {
         try {
             return asLocationE(string, separator);
         } catch (LocationParseException e) {
-            Log.warn( "Error while parsing Location %s", e, string);
+            Log.warn( "分析位置 %s 时出错：", e, string);
             return null;
         }
     }
@@ -56,12 +56,12 @@ public class LocationUtils {
                     }
                     return location;
                 } catch (NumberFormatException e) {
-                    Log.warn("Error while parsing Location %s", e, string);
+                    Log.warn("分析位置 %s 时出错", e, string);
                 }
             }
-            throw new LocationParseException(String.format("World '%s' not found.", spl[0]), LocationParseException.Reason.WORLD, spl[0]);
+            throw new LocationParseException(String.format("找不到世界 '%s'", spl[0]), LocationParseException.Reason.WORLD, spl[0]);
         }
-        throw new LocationParseException(String.format("Wrong location format: %s", string));
+        throw new LocationParseException(String.format("错误的坐标: %s", string));
     }
 
     public static Location randomizeLocation(@NonNull Location location) {

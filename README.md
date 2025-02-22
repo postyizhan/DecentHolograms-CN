@@ -1,11 +1,16 @@
-# Decent Holograms
-[![SpigotMC Downloads](https://img.shields.io/spiget/downloads/96927?label=Downloads) 
-![SpigotMC Version](https://img.shields.io/spiget/version/96927?label=Release) 
-![Tested Versions](https://img.shields.io/spiget/tested-versions/96927?label=Supports)](https://www.spigotmc.org/resources/96927/) 
+# DecentHolograms-CN
+[![SpigotMC Downloads](https://img.shields.io/spiget/downloads/96927?label=Downloads)
+![SpigotMC Version](https://img.shields.io/spiget/version/96927?label=Release)
+![Tested Versions](https://img.shields.io/spiget/tested-versions/96927?label=Supports)](https://www.spigotmc.org/resources/96927/)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 >A lightweight yet very powerful hologram plugin with many features and configuration options.
 
+DecentHolograms内核汉化！
+
 **Links:**
+- [MineBBS（内核汉化版下载）](https://www.minebbs.com/resources/decentholograms.9059/)
+- [GitHub actions（内核汉化版下载）](https://github.com/postyizhan/DecentHolograms-CN/actions)
+
 - [Modrinth (Download)](https://modrinth.com/plugin/decentholograms)
 - [SpigotMC (Download)](https://www.spigotmc.org/resources/96927/)
 - [Discord (Support)](https://discord.decentsoftware.eu/)

@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
 @CommandInfo(
 		permissions = "dh.command.lines",
 		usage = "/dh lines help",
-		description = "All commands for editing hologram lines.",
+		description = "悬浮字行编辑相关命令.",
 		aliases = {"line", "l"}
 )
 public class LineSubCommand extends DecentCommand {
@@ -81,7 +81,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.add",
 			usage = "/dh line add <hologram> <page> [content]",
-			description = "Add a line to Hologram.",
+			description = "向悬浮字添加一行新的文本.",
 			aliases = {"append"},
 			minArgs = 2
 	)
@@ -123,7 +123,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.align",
 			usage = "/dh line align <hologram> <page> <line1> <line2> <X|Z|XZ|FACE>",
-			description = "Align two lines in hologram on a specified axis or its facing angle.",
+			description = "将 <line1> 与 <line2> 在指定方向的轴上对齐.",
 			minArgs = 5
 	)
 	static class LineAlignSub extends DecentCommand {
@@ -193,7 +193,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.edit",
 			usage = "/dh line edit <hologram> <page> <line>",
-			description = "Edit a line.",
+			description = "向你发送一条聊天消息，可通过点击直接在聊天栏生成编辑命令.",
 			aliases = {"e"},
 			playerOnly = true,
 			minArgs = 3
@@ -232,7 +232,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.addflag",
 			usage = "/dh line addflag <hologram> <page> <line> <flag>",
-			description = "Add a flag to line.",
+			description = "向悬浮字行添加标志.",
 			minArgs = 4
 	)
 	static class LineFlagAddSub extends DecentCommand {
@@ -276,7 +276,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.removeflag",
 			usage = "/dh line removeflag <hologram> <page> <line> <flag>",
-			description = "Remove a flag from line.",
+			description = "从悬浮字中删除指定行的标志.",
 			minArgs = 4
 	)
 	static class LineFlagRemoveSub extends DecentCommand {
@@ -320,7 +320,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.height",
 			usage = "/dh line height <hologram> <page> <line> <height>",
-			description = "Set height of a line.",
+			description = "设置所在行的高度.",
 			aliases = {"setheight"},
 			minArgs = 4
 	)
@@ -367,7 +367,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.help",
 			usage = "/dh line help",
-			description = "Show help for lines.",
+			description = "显示编辑行相关命令.",
 			aliases = {"?"}
 	)
 	static class LineHelpSub extends DecentCommand {
@@ -381,7 +381,7 @@ public class LineSubCommand extends DecentCommand {
 			return (sender, args) -> {
 				sender.sendMessage("");
 				Common.tell(sender, " &3&lDECENT HOLOGRAMS HELP (LINES)");
-				Common.tell(sender, " All commands for editing hologram lines.");
+				Common.tell(sender, " 编辑行相关命令.");
 				sender.sendMessage("");
 				CommandBase command = PLUGIN.getCommandManager().getMainCommand().getSubCommand("lines");
 				List<CommandBase> subCommands = Lists.newArrayList(command.getSubCommands());
@@ -389,7 +389,7 @@ public class LineSubCommand extends DecentCommand {
 					Common.tell(sender, " &8• &b%s &8- &7%s", subCommand.getUsage(), subCommand.getDescription());
 				}
 				sender.sendMessage("");
-				Common.tell(sender, " &7Aliases: &b%s%s",
+				Common.tell(sender, " &7别名: &b%s%s",
 						command.getName(),
 						command.getAliases().size() > 1
 								? ", " + String.join(", ", command.getAliases())
@@ -410,7 +410,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.info",
 			usage = "/dh line info <hologram> <page> <line>",
-			description = "Show info about line.",
+			description = "显示悬浮字行的有关信息.",
 			minArgs = 3
 	)
 	static class LineInfoSub extends DecentCommand {
@@ -432,16 +432,16 @@ public class LineSubCommand extends DecentCommand {
 				Common.tell(sender, " &3&lHOLOGRAM LINE INFO");
 				Common.tell(sender, " General information about a line");
 				sender.sendMessage("");
-				Common.tell(sender, " &8• &7Hologram: &b%s", hologram.getName());
-				Common.tell(sender, " &8• &7Index: &b%d", index);
-				Common.tell(sender, " &8• &7Location: &b%s, %.2f, %.2f, %.2f",
+				Common.tell(sender, " &8• &7全息图: &b%s", hologram.getName());
+				Common.tell(sender, " &8• &7索引: &b%d", index);
+				Common.tell(sender, " &8• &7位置: &b%s, %.2f, %.2f, %.2f",
 						loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ()
 				);
 				sender.sendMessage(Common.colorize(" &8• &7Content: &b") + line.getContent());
-				Common.tell(sender, " &8• &7Height: &b%f", line.getHeight());
-				Common.tell(sender, " &8• &7OffsetX: &b%f", line.getOffsetX());
-				Common.tell(sender, " &8• &7OffsetY: &b%f", line.getOffsetY());
-				Common.tell(sender, " &8• &7OffsetZ: &b%f", line.getOffsetZ());
+				Common.tell(sender, " &8• &7行高: &b%f", line.getHeight());
+				Common.tell(sender, " &8• &7X轴偏移: &b%f", line.getOffsetX());
+				Common.tell(sender, " &8• &7Y轴偏移: &b%f", line.getOffsetY());
+				Common.tell(sender, " &8• &7Z轴偏移: &b%f", line.getOffsetZ());
 				sender.sendMessage("");
 				return true;
 			};
@@ -457,7 +457,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.insert",
 			usage = "/dh line insert <hologram> <page> <line> [content]",
-			description = "Insert a line into Hologram.",
+			description = "在给定行号的下方插入一行新的文本.",
 			minArgs = 3
 	)
 	static class LineInsertSub extends DecentCommand {
@@ -502,7 +502,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.offsetx",
 			usage = "/dh line offsetX <hologram> <page> <line> <offset>",
-			description = "Set an X offset of a line.",
+			description = "设置悬浮字行x轴偏移.",
 			aliases = {"xoffset", "offx", "xoff"},
 			minArgs = 4
 	)
@@ -520,7 +520,7 @@ public class LineSubCommand extends DecentCommand {
 				HologramLine line = Validator.getHologramLine(page, Validator.getInteger(args[2], Lang.LINE_DOES_NOT_EXIST.getValue()));
 				if (line != null) {
 					line.setOffsetX(Validator.getDouble(args[3], -2.5D, 2.5D,
-							String.format("OffsetX must be a valid number in range. (Min: %.2f, Max: %.2f)", -2.5D, 2.5D)
+							String.format("X偏移量必须是范围内的有效数字！（最小值：%.2f，最大值：%.2.f）", -2.5D, 2.5D)
 					));
 					page.realignLines();
 					hologram.save();
@@ -542,7 +542,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.offsetz",
 			usage = "/dh line offsetZ <hologram> <page> <line> <offset>",
-			description = "Set an Z offset of a line.",
+			description = "设置悬浮字行z轴偏移.",
 			aliases = {"zoffset", "offz", "zoff"},
 			minArgs = 4
 	)
@@ -560,7 +560,7 @@ public class LineSubCommand extends DecentCommand {
 				HologramLine line = Validator.getHologramLine(page, Validator.getInteger(args[2], Lang.LINE_DOES_NOT_EXIST.getValue()));
 				if (line != null) {
 					line.setOffsetZ(Validator.getDouble(args[3], -2.5D, 2.5D,
-							String.format("OffsetZ must be a valid number in range. (Min: %.2f, Max: %.2f)", -2.5D, 2.5D)
+							String.format("Z偏移量必须是范围内的有效数字！（最小值：%.2f，最大值：%.2.f）", -2.5D, 2.5D)
 					));
 					page.realignLines();
 					hologram.save();
@@ -582,7 +582,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.setpermission",
 			usage = "/dh line setpermission <hologram> <page> <line> [permission]",
-			description = "Set line permission.",
+			description = "设置浏览悬浮字行所需的权限.",
 			aliases = {"permission", "setperm", "perm"},
 			minArgs = 3
 	)
@@ -624,7 +624,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.remove",
 			usage = "/dh line remove <hologram> <page> <line>",
-			description = "Remove a line from Hologram.",
+			description = "从悬浮字中删除指定行的文本.",
 			aliases = {"rm", "rem", "del", "delete"},
 			minArgs = 3
 	)
@@ -664,7 +664,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.set",
 			usage = "/dh line set <hologram> <page> <line> <content>",
-			description = "Set a line in Hologram.",
+			description = "将悬浮字指定行替换为新的内容.",
 			minArgs = 4
 	)
 	static class LineSetSub extends DecentCommand {
@@ -706,7 +706,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.swap",
 			usage = "/dh line swap <hologram> <page> <line1> <line2>",
-			description = "Swap two lines in a Hologram.",
+			description = "交换悬浮字内的两行文本.",
 			minArgs = 4
 	)
 	static class LineSwapSub extends DecentCommand {
@@ -751,7 +751,7 @@ public class LineSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.lines.setfacing",
 			usage = "/dh line setfacing <hologram> <page> <line> <facing>",
-			description = "Set facing direction of a line.",
+			description = "设置悬浮字的面朝方向（yaw）.",
 			aliases = {"facing", "setface", "face"},
 			minArgs = 4
 	)
@@ -774,7 +774,7 @@ public class LineSubCommand extends DecentCommand {
 					case "NORTH": facing = 180.0f; break;
 					case "EAST": facing = -90.0f; break;
 					default:
-						facing = Validator.getFloat(args[3], -180.0f, 180.0f, "Facing must be a valid number between -180 and 180.");
+						facing = Validator.getFloat(args[3], -180.0f, 180.0f, "朝向必须是介于-180和180之间的有效数字.");
 						break;
 				}
 				line.setFacing(facing);

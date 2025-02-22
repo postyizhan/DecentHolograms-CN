@@ -39,14 +39,14 @@ public final class Message {
 		} else if (page == 0) {
 			baseComponents.addAll(Arrays.asList(TextComponent.fromLegacyText(Common.colorize(String.format(" &b««« &8| &3Page #%d &8| ", page + 1)))));
 			baseComponents.addAll(Arrays.asList(new ComponentBuilder(Common.colorize("&b»»»"))
-					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("Next page"))))
+					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("下一页"))))
 					.event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format(commandFormat, page + 2)))
 					.create()));
 		} else if (maxPage) {
 			baseComponents.addAll(Arrays.asList(new ComponentBuilder(" ")
 					.reset()
 					.append(Common.colorize("&b«««"))
-					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("Previous page"))))
+					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("上一页"))))
 					.event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format(commandFormat, page)))
 					.create()));
 			baseComponents.addAll(Arrays.asList(TextComponent.fromLegacyText(Common.colorize(String.format(" &8| &3Page #%d &8| &b»»»", page + 1)))));
@@ -54,12 +54,12 @@ public final class Message {
 			baseComponents.addAll(Arrays.asList(new ComponentBuilder(" ")
 					.reset()
 					.append(Common.colorize("&b«««"))
-					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("Previous page"))))
+					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("上一页"))))
 					.event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format(commandFormat, page)))
 					.create()));
 			baseComponents.addAll(Arrays.asList(TextComponent.fromLegacyText(Common.colorize(String.format(" &8| &3Page #%d &8| ", page + 1)))));
 			baseComponents.addAll(Arrays.asList(new ComponentBuilder(Common.colorize("&b»»»"))
-					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("Next page"))))
+					.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(Common.colorize("下一页"))))
 					.event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format(commandFormat, page + 2)))
 					.create()));
 		}

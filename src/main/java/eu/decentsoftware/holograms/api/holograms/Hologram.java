@@ -110,11 +110,11 @@ public class Hologram extends UpdatingHologramObject implements ITicked {
 
         if (name.isEmpty()) {
             // This shouldn't happen when loading holograms from files.
-            throw new IllegalArgumentException("Hologram name cannot be null or empty.");
+            throw new IllegalArgumentException("名称不能留空.");
         }
 
         if (Hologram.getCachedHologramNames().contains(name)) {
-            throw new IllegalArgumentException("Hologram with name '" + name + "' already exists.");
+            throw new IllegalArgumentException("名字 '" + name + "' 已经存在.");
         }
 
         // Get hologram location
@@ -173,7 +173,7 @@ public class Hologram extends UpdatingHologramObject implements ITicked {
                             try {
                                 page.addAction(clickType, new Action(clickTypeAction));
                             } catch (Exception e) {
-                                Log.warn("Failed to parse action '%s' for hologram '%s' at page %s! Skipping...",
+                                Log.warn("无法解析浮空字 '%s' 页面 '%s' 的 action '%s'！已跳过...",
                                         e, clickTypeAction, hologram.getName(), page.getIndex());
                             }
                         }

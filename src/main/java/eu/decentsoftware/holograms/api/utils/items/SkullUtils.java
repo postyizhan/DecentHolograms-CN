@@ -88,7 +88,6 @@ public final class SkullUtils {
 
             GameProfile profile = (GameProfile) (gameProfileFieldResolvableProfile == null ? profileObject : gameProfileFieldResolvableProfile.get(profileObject));
             if (profile == null) return null;
-
             if (valueResolver == null) {
                 try {
                     // Pre 1.20(.4?) uses getValue
@@ -102,7 +101,7 @@ public final class SkullUtils {
                         try {
                             return (String) propertyValueMethod.invoke(property);
                         } catch (IllegalAccessException | InvocationTargetException e) {
-                            Log.error("Failed to invoke Property#value", e);
+                            Log.error("调用 Property#value 失败", e);
                         }
                         return null;
                     };
@@ -115,7 +114,7 @@ public final class SkullUtils {
                 return valueResolver.apply(property.iterator().next());
             }
         } catch (Exception e) {
-            Log.error("An exception occurred while retrieving skull texture", e);
+            Log.error("检索头颅纹理时发生异常", e);
         }
         return null;
     }
@@ -171,13 +170,12 @@ public final class SkullUtils {
                 }
             }
             itemStack.setItemMeta(meta);
-
             if (Version.before(13)) {
                 // noinspection deprecation
                 itemStack.setDurability((short) SkullType.PLAYER.ordinal());
             }
         } catch (Exception e) {
-            Log.error("An exception occurred while setting skull texture", e);
+            Log.error("设置头颅纹理时发生异常", e);
         }
     }
 
@@ -243,10 +241,9 @@ public final class SkullUtils {
             JSONObject decoded = (JSONObject) jsonData.get("raw");
             JSONArray textures = (JSONArray) decoded.get("properties");
             JSONObject data = (JSONObject) textures.get(0);
-
             return data.get("value").toString();
         } catch (Exception e) {
-            Log.warn("Failed to fetch texture for player %s", username, e);
+            Log.warn("无法获取纹理： %s", username, e);
         }
         return null;
     }
@@ -266,12 +263,11 @@ public final class SkullUtils {
             Object parsedData = jsonParser.parse(userData);
 
             JSONObject jsonData = (JSONObject) parsedData;
-
             if (jsonData.get("id") != null) {
                 return jsonData.get("id").toString();
             }
         } catch (Exception e) {
-            Log.warn("Failed to fetch UUID for player %s", playerName, e);
+            Log.warn("无法获取UUID： %s", playerName, e);
         }
         return null;
     }

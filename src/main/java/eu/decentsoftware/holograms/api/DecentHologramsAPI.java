@@ -93,7 +93,7 @@ public final class DecentHologramsAPI {
      */
     public static DecentHolograms get() {
         if (implementation == null || !enabled) {
-            throw new IllegalStateException("DecentHolograms is not running (yet). Do you have DecentHolograms plugin installed?");
+            throw new IllegalStateException("DecentHolograms 尚未运行，你安装了 DecentHolograms 插件吗？");
         }
         return implementation;
     }

@@ -72,7 +72,7 @@ public class HologramItem {
 
             return itemStack;
         } catch (Exception e) {
-            Log.warn("Error parsing item: %s", e, content);
+            Log.warn("无法解析的物品: %s", e, content);
             return new ItemStack(Material.STONE);
         }
     }
@@ -110,14 +110,14 @@ public class HologramItem {
 
                 return NBT.itemStackFromNBT(modifiableNBT);
             } catch (NoSuchFieldException | IllegalAccessException ex) {
-                Log.warn("Failed to apply NBT Data to Item: %s", ex, nbt);
+                Log.warn("无法将NBT应用于物品: %s", ex, nbt);
                 return itemStack;
             }
         } else {
             try {
                 Bukkit.getUnsafe().modifyItemStack(itemStack, nbt);
             } catch (Exception ex) {
-                Log.warn("Failed to apply NBT Data to Item: %s", ex, nbt);
+                Log.warn("无法将NBT应用于物品: %s", ex, nbt);
             }
 
             return itemStack;

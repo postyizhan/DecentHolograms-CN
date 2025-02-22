@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @CommandInfo(
 		permissions = "dh.command.holograms",
 		usage = "/dh holograms help",
-		description = "All commands for editing holograms.",
+		description = "全息图编辑相关命令.",
 		aliases = {"hologram", "holo", "h"}
 )
 public class HologramSubCommand extends DecentCommand {
@@ -87,7 +87,7 @@ public class HologramSubCommand extends DecentCommand {
     @CommandInfo(
             permissions = "dh.command.holograms.update",
             usage = "/dh hologram update <hologram>",
-            description = "Update a Hologram.",
+            description = "手动刷新悬浮字.",
             minArgs = 1
     )
     public static class HologramUpdateSub extends DecentCommand {
@@ -119,7 +119,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.align",
 			usage = "/dh hologram align <hologram> <X|Y|Z|XZ|FACE> <otherHologram>",
-			description = "Align hologram with other hologram on a specified axis or its facing angle.",
+			description = "将指定悬浮字移动到其他悬浮字按特定轴对齐的位置上.",
 			minArgs = 3
 	)
 	public static class HologramAlignSub extends DecentCommand {
@@ -189,7 +189,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.center",
 			usage = "/dh hologram center <hologram>",
-			description = "Move a Hologram into the center of a block.",
+			description = "将悬浮字中心水平移动到当前所在方块正中央.",
 			minArgs = 1
 	)
 	public static class HologramCenterSub extends DecentCommand {
@@ -228,7 +228,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.clone",
 			usage = "/dh hologram clone <hologram> <name> [temp] [-l:<world:x:y:z>]",
-			description = "Clone an existing Hologram.",
+			description = "复制已有悬浮字.",
 			aliases = {"copy"},
 			minArgs = 2
 	)
@@ -261,7 +261,7 @@ public class HologramSubCommand extends DecentCommand {
 								break;
 							}
 						} else {
-							temp = Validator.getBoolean(args[2], "Value of temp must be true or false.");
+							temp = Validator.getBoolean(args[2], "temp的值必须为true或false.");
 						}
 					}
 				}
@@ -296,7 +296,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.create",
 			usage = "/dh hologram create <name> [-l:world:x:y:z] [--center] [content]",
-			description = "Create new Hologram.",
+			description = "创建新的悬浮字.",
 			aliases = {"new", "c"},
 			minArgs = 1
 	)
@@ -399,7 +399,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.delete",
 			usage = "/dh hologram delete <hologram>",
-			description = "Delete a Hologram.",
+			description = "删除现存的悬浮字.",
 			aliases = {"del", "remove", "rem"},
 			minArgs = 1
 	)
@@ -432,7 +432,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.disable",
 			usage = "/dh hologram disable <hologram>",
-			description = "Disable a hologram.",
+			description = "禁用指定的悬浮字.",
 			aliases = {"off"},
 			minArgs = 1
 	)
@@ -468,7 +468,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setdisplayrange",
 			usage = "/dh hologram setdisplayrange <hologram> <range>",
-			description = "Set display range of a hologram.",
+			description = "设置玩家可见悬浮字的最大范围.",
 			aliases = {"displayrange"},
 			minArgs = 2
 	)
@@ -481,7 +481,7 @@ public class HologramSubCommand extends DecentCommand {
 		@Override
 		public CommandHandler getCommandHandler() {
 			return (sender, args) -> {
-				final int range = Validator.getInteger(args[1], 1, 64, "Range must be a valid number between 1 and 64.");
+				final int range = Validator.getInteger(args[1], 1, 64, "范围必须是介于1和64之间的有效数字.");
 				final Hologram hologram = Validator.getHologram(args[0], Lang.HOLOGRAM_DOES_NOT_EXIST.getValue());
 				hologram.setDisplayRange(range);
 				hologram.save();
@@ -501,7 +501,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.downorigin",
 			usage = "/dh hologram downorigin <hologram> <true|false>",
-			description = "Set down origin state of the hologram.",
+			description = "设置下行插入的状态.",
 			aliases = {"setdownorigin"},
 			minArgs = 2
 	)
@@ -542,7 +542,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.enable",
 			usage = "/dh hologram enable <hologram>",
-			description = "Enable a hologram.",
+			description = "启用指定的悬浮字.",
 			aliases = {"on"},
 			minArgs = 1
 	)
@@ -578,7 +578,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setfacing",
 			usage = "/dh hologram setfacing <hologram> <facing>",
-			description = "Set facing direction of a hologram.",
+			description = "设置悬浮字的面朝方向（yaw）.",
 			aliases = {"facing", "setface", "face"},
 			minArgs = 2
 	)
@@ -599,7 +599,7 @@ public class HologramSubCommand extends DecentCommand {
 					case "NORTH": facing = 180.0f; break;
 					case "EAST": facing = -90.0f; break;
 					default:
-						facing = Validator.getFloat(args[1], -180.0f, 180.0f, "Facing must be a valid number between -180 and 180.");
+						facing = Validator.getFloat(args[1], -180.0f, 180.0f, "必须是介于-180和180之间的有效数字.");
 						break;
 				}
 				hologram.setFacing(facing);
@@ -628,7 +628,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.addflag",
 			usage = "/dh hologram addflag <hologram> <flag>",
-			description = "Add a flag to Hologram.",
+			description = "向指定悬浮字添加标志.",
 			minArgs = 2
 	)
 	public static class HologramFlagAddSub extends DecentCommand {
@@ -669,7 +669,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.removeflag",
 			usage = "/dh hologram removeflag <hologram> <flag>",
-			description = "Remove a flag from Hologram.",
+			description = "将悬浮字中的指定标志删去.",
 			aliases = {"remflag"},
 			minArgs = 2
 	)
@@ -711,7 +711,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.help",
 			usage = "/dh hologram help",
-			description = "Show help for holograms",
+			description = "显示全息图帮助",
 			aliases = {"?"}
 	)
 	public static class HologramHelpSub extends DecentCommand {
@@ -725,7 +725,7 @@ public class HologramSubCommand extends DecentCommand {
 			return (sender, args) -> {
 				sender.sendMessage("");
 				Common.tell(sender, " &3&lDECENT HOLOGRAMS HELP (HOLOGRAMS)");
-				Common.tell(sender, " All commands for editing holograms.");
+				Common.tell(sender, " 所有与编辑全息图有关的命令.");
 				sender.sendMessage("");
 				CommandBase command = PLUGIN.getCommandManager().getMainCommand().getSubCommand("holograms");
 				List<CommandBase> subCommands = Lists.newArrayList(command.getSubCommands());
@@ -733,7 +733,7 @@ public class HologramSubCommand extends DecentCommand {
 					Common.tell(sender, " &8• &b%s &8- &7%s", subCommand.getUsage(), subCommand.getDescription());
 				}
 				sender.sendMessage("");
-				Common.tell(sender, " &7Aliases: &b%s%s",
+				Common.tell(sender, " &7别名: &b%s%s",
 						command.getName(),
 						command.getAliases().size() > 1
 								? ", " + String.join(", ", command.getAliases())
@@ -754,7 +754,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.info",
 			usage = "/dh hologram info <hologram>",
-			description = "Show info about a Hologram.",
+			description = "显示悬浮字的详细信息.",
 			minArgs = 1
 	)
 	public static class HologramInfoSub extends DecentCommand {
@@ -769,9 +769,9 @@ public class HologramSubCommand extends DecentCommand {
 				Hologram hologram = Validator.getHologram(args[0], Lang.HOLOGRAM_DOES_NOT_EXIST.getValue());
 				sender.sendMessage("");
 				Common.tell(sender, " &3&lHOLOGRAM INFO");
-				Common.tell(sender, " &fInformation about hologram.");
+				Common.tell(sender, " &f信息：");
 				sender.sendMessage("");
-				Common.tell(sender, " &8• &7Name: &b%s", hologram.getName());
+				Common.tell(sender, " &8• &7名称: &b%s", hologram.getName());
 				for (String s : Lang.getHologramInfo(hologram)) {
 					Common.tell(sender, s);
 				}
@@ -790,7 +790,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.lines",
 			usage = "/dh hologram lines <hologram> <page> [listPage]",
-			description = "Lists all lines in a hologram.",
+			description = "列出悬浮字所有插入的文本行.",
 			aliases = {"line", "l"},
 			minArgs = 2
 	)
@@ -817,13 +817,13 @@ public class HologramSubCommand extends DecentCommand {
 
 				sender.sendMessage("");
 				Common.tell(sender, " &3&lHOLOGRAM LINES");
-				Common.tell(sender, " &fLines in a page.");
+				Common.tell(sender, " &f此页所有行.");
 				sender.sendMessage("");
 
 				final int itemsPerPage = 15;
 				final int itemsTotal = page.size();
 				final int maxPage = itemsTotal % itemsPerPage == 0 ? itemsTotal / itemsPerPage - 1 : itemsTotal / itemsPerPage;
-				int currentPage = args.length >= 3 ? Validator.getInteger(args[2], "Page must be a valid integer.") - 1 : 0;
+				int currentPage = args.length >= 3 ? Validator.getInteger(args[2], "页面必须是有效整数.") - 1 : 0;
 				if (currentPage > maxPage) currentPage = maxPage;
 				final int startIndex = currentPage * itemsPerPage;
 				final int endIndex = Math.min(startIndex + itemsPerPage, itemsTotal);
@@ -863,7 +863,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.movehere",
 			usage = "/dh hologram movehere <hologram>",
-			description = "Move a Hologram to yourself.",
+			description = "将指定悬浮字传送至你的位置.",
 			aliases = {"mvhr"},
 			playerOnly = true,
 			minArgs = 1
@@ -904,7 +904,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.move",
 			usage = "/dh hologram move <hologram> <x> <y> <z>",
-			description = "Move Hologram to a Location.",
+			description = "将悬浮字移动至指定坐标.",
 			aliases = {"mv"},
 			minArgs = 4
 	)
@@ -972,7 +972,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.near",
 			usage = "/dh hologram near <range>",
-			description = "List of holograms near you.",
+			description = "列出指定范围内存在的悬浮字.",
 			playerOnly = true,
 			minArgs = 1
 	)
@@ -994,7 +994,7 @@ public class HologramSubCommand extends DecentCommand {
 
 		@Override
 		public String getDescription() {
-			return "List of holograms near you.";
+			return "列出指定范围内存在的悬浮字.";
 		}
 
 		@Override
@@ -1002,9 +1002,9 @@ public class HologramSubCommand extends DecentCommand {
 			return (sender, args) -> {
 				Player player = (Player) sender;
 				int range = Validator.getIntegerInRange(
-						Validator.getInteger(args[0], "Range must be a valid integer."),
+						Validator.getInteger(args[0], "范围必须是有效整数."),
 						1, 1000,
-						"Range must be a valid integer between 1 and 1000."
+						"范围必须是介于1和1000之间的有效整数."
 				);
 				Location playerLocation = player.getLocation();
 
@@ -1017,11 +1017,11 @@ public class HologramSubCommand extends DecentCommand {
 				}
 
 				if (nearHolograms.isEmpty()) {
-					Common.tell(sender, "%sThere are no holograms near you.", Common.PREFIX);
+					Common.tell(sender, "%s你附近没有全息图.", Common.PREFIX);
 				} else {
 					player.sendMessage("");
 					Common.tell(player, " &3&lNEAR HOLOGRAMS");
-					Common.tell(player, " &fList of holograms near you.");
+					Common.tell(player, " &f列出你周围的全息图.");
 					player.sendMessage("");
 					for (Hologram hologram : nearHolograms) {
 						Location loc = hologram.getLocation();
@@ -1050,7 +1050,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setpermission",
 			usage = "/dh hologram setpermission <hologram> [permission]",
-			description = "Set hologram permission.",
+			description = "设置浏览当前悬浮字所需的权限.",
 			aliases = {"permission", "setperm", "perm"},
 			minArgs = 1
 	)
@@ -1086,7 +1086,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.teleport",
 			usage = "/dh hologram teleport <hologram>",
-			description = "Teleport to a Hologram.",
+			description = "将你传送至指定悬浮字的位置.",
 			playerOnly = true,
 			aliases = {"tp", "tele"},
 			minArgs = 1
@@ -1119,7 +1119,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setupdateinterval",
 			usage = "/dh hologram setupdateinterval <hologram> <interval>",
-			description = "Set update interval of a hologram.",
+			description = "设置更新间隔.",
 			aliases = {"updateinterval"},
 			minArgs = 2
 	)
@@ -1132,7 +1132,7 @@ public class HologramSubCommand extends DecentCommand {
 		@Override
 		public CommandHandler getCommandHandler() {
 			return (sender, args) -> {
-				final int interval = Validator.getInteger(args[1], 1, 1200, "Interval must be a valid number between 1 and 1200.");
+				final int interval = Validator.getInteger(args[1], 1, 1200, "必须是介于1和1200之间的有效数字.");
 				final Hologram hologram = Validator.getHologram(args[0], Lang.HOLOGRAM_DOES_NOT_EXIST.getValue());
 				hologram.setUpdateInterval(interval);
 				hologram.save();
@@ -1152,7 +1152,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.setupdaterange",
 			usage = "/dh hologram setupdaterange <hologram> <range>",
-			description = "Set update range of a hologram.",
+			description = "设置玩家可看见悬浮字刷新的最大范围.",
 			aliases = {"updaterange"},
 			minArgs = 2
 	)
@@ -1165,7 +1165,7 @@ public class HologramSubCommand extends DecentCommand {
 		@Override
 		public CommandHandler getCommandHandler() {
 			return (sender, args) -> {
-				final int range = Validator.getInteger(args[1], 1, 64, "Range must be a valid number between 1 and 64.");
+				final int range = Validator.getInteger(args[1], 1, 64, "范围必须是介于1和64之间的有效数字.");
 				final Hologram hologram = Validator.getHologram(args[0], Lang.HOLOGRAM_DOES_NOT_EXIST.getValue());
 				hologram.setUpdateRange(range);
 				hologram.save();
@@ -1185,7 +1185,7 @@ public class HologramSubCommand extends DecentCommand {
 	@CommandInfo(
 			permissions = "dh.command.holograms.rename",
 			usage = "/dh hologram rename <hologram> <new_name>",
-			description = "Rename a hologram.",
+			description = "重命名现存的悬浮字.",
 			minArgs = 2
 	)
 	public static class HologramRenameSub extends DecentCommand {

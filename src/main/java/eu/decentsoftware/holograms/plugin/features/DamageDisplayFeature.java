@@ -79,7 +79,7 @@ public class DamageDisplayFeature extends AbstractFeature implements Listener {
 
 	@Override
 	public String getDescription() {
-		return "Spawn a temporary hologram displaying damage.";
+		return "在受伤时生成悬浮字显示损失血量.";
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)

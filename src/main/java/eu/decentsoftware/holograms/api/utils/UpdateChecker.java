@@ -30,7 +30,7 @@ public class UpdateChecker {
                     consumer.accept(scanner.next());
                 }
             } catch (IOException exception) {
-                Log.info("Unable to check for updates: " + exception.getMessage());
+                Log.info("检查更新失败: " + exception.getMessage());
             }
         });
     }

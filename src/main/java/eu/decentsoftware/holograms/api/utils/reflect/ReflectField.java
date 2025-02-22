@@ -41,7 +41,7 @@ public class ReflectField<T> {
 			this.init();
 			return (T) field.get(object);
 		} catch (Exception e) {
-			Log.error("Failed to get field value: %s", e, name);
+			Log.error("无法获取字段值：%s", e, name);
 			return null;
 		}
 	}
@@ -51,7 +51,7 @@ public class ReflectField<T> {
 			this.init();
 			field.set(object, value);
 		} catch (Exception e) {
-			Log.error("Failed to set field value: %s", e, name);
+			Log.error("无法设置字段值：%s", e, name);
 		}
 	}
 

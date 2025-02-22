@@ -148,8 +148,11 @@ public class Lang {
 
     public static void sendVersionMessage(@NonNull CommandSender sender) {
         Common.tell(sender,
-                "\n&fThis server is running &3DecentHolograms v%s&f by &bd0by&f: \n&f- &7%s\n&f- &7%s",
+                "\n&fThis server is running &3DecentHolograms v%s&f by &bd0by&f: \n&f- &7%s\n&f- &7%s\n&f- &7%s",
                 DecentHologramsAPI.get().getPlugin().getDescription().getVersion(),
+                "\n&f汉化：postyizhan(驿站忆行) QQ群：611076407",
+                "https://www.minebbs.com/resources/decentholograms.9059/",
+                "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",
                 "https://modrinth.com/plugin/decentholograms"
         );
@@ -157,7 +160,9 @@ public class Lang {
 
     public static void sendUpdateMessage(@NonNull CommandSender sender) {
         Common.tell(sender,
-                "\n&fA newer version of &3DecentHolograms &fis available. Download it from: \n&f- &7%s\n&f- &7%s",
+                "\n&f插件 &3DecentHolograms &f发现新版本！ 下载地址: \n&f- &7%s\n&f- &7%s\n&f- &7%s",
+                "https://www.minebbs.com/resources/decentholograms.9059/",
+                "https://github.com/postyizhan/DecentHolograms-CN",
                 "https://www.spigotmc.org/resources/96927/",
                 "https://modrinth.com/plugin/decentholograms"
         );
@@ -167,19 +172,19 @@ public class Lang {
     public static List<String> getHologramInfo(@NonNull Hologram hologram) {
         List<String> info = new ArrayList<>();
         Location l = hologram.getLocation();
-        info.add(String.format(" &8• &7Location: &b%s, %.2f, %.2f, %.2f", l.getWorld().getName(), l.getX(), l.getY(), l.getZ()));
-        info.add(String.format(" &8• &7Enabled: &b%s", hologram.isEnabled()));
+        info.add(String.format(" &8• &7位置: &b%s, %.2f, %.2f, %.2f", l.getWorld().getName(), l.getX(), l.getY(), l.getZ()));
+        info.add(String.format(" &8• &7启用: &b%s", hologram.isEnabled()));
         if (hologram.getPermission() != null && !hologram.getPermission().isEmpty()) {
-            info.add(String.format(" &8• &7Permission: &b%s", hologram.getPermission()));
+            info.add(String.format(" &8• &7权限: &b%s", hologram.getPermission()));
         }
-        info.add(String.format(" &8• &7Pages: &b%d", hologram.size()));
-        info.add(String.format(" &8• &7Facing: &b%.1f deg", hologram.getFacing()));
-        info.add(String.format(" &8• &7Down Origin: &b%b", hologram.isDownOrigin()));
-        info.add(String.format(" &8• &7Update Interval: &b%d ticks", hologram.getUpdateInterval()));
-        info.add(String.format(" &8• &7Update Range: &b%d", hologram.getUpdateRange()));
-        info.add(String.format(" &8• &7Display Range: &b%d", hologram.getDisplayRange()));
+        info.add(String.format(" &8• &7页数: &b%d", hologram.size()));
+        info.add(String.format(" &8• &7朝向: &b%.1f deg", hologram.getFacing()));
+        info.add(String.format(" &8• &7下行插入状态: &b%b", hologram.isDownOrigin()));
+        info.add(String.format(" &8• &7刷新间隔: &b%d ticks", hologram.getUpdateInterval()));
+        info.add(String.format(" &8• &7刷新范围: &b%d", hologram.getUpdateRange()));
+        info.add(String.format(" &8• &7显示范围: &b%d", hologram.getDisplayRange()));
         if (!hologram.getFlags().isEmpty()) {
-            info.add(String.format(" &8• &7Flags: &b%s", hologram.getFlags().stream().map(EnumFlag::name).collect(Collectors.joining(", "))));
+            info.add(String.format(" &8• &7标志: &b%s", hologram.getFlags().stream().map(EnumFlag::name).collect(Collectors.joining(", "))));
         }
         return info;
     }
