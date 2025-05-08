@@ -58,6 +58,24 @@ public final class DecentHolograms {
         Lang.reload();
         DExecutor.init(3);
 
+        // 使用 Stream
+        Logger logger = plugin.getLogger();
+        
+        // 简单优化了下日志输出 qwq
+        java.util.Arrays.asList(
+       " _____   _    ___   ___   _   _ ",
+            "|  __ \\ | |  | | / ____| | \\ | |",
+            "| |  | || |__| || |      |  \\| |",
+            "| |  | ||  __  || |      | . ` |",
+            "| |__| || |  | || |____  | |\\  |",
+            "|_____/ |_|  |_| \\_____| |_| \\_|",
+            "",
+            "DecentHolograms 汉化版加载成功",
+            "汉化: postyizhan (驿站忆行)",
+            "汉化版仓库: https://github.com/postyizhan/DecentHolograms-CN",
+            "交流群: 611076407"
+        ).forEach(logger::info);
+
         this.ticker = new Ticker();
         this.hologramManager = new HologramManager(this);
         this.commandManager = new CommandManager();
