@@ -8,6 +8,22 @@ group = "eu.decentsoftware.holograms"
 version = "2.8.17"
 description = "A lightweight yet very powerful hologram plugin with many features and configuration options."
 
+// 本地构建除了一点编码问题，不要介意这里（
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('charset', 'UTF-8')
+    options.charSet = 'UTF-8'
+}
+
+tasks.withType(ProcessResources) {
+    filteringCharset = 'UTF-8'
+}
+
 repositories {
     mavenCentral()
     maven { url = "https://oss.sonatype.org/content/repositories/snapshots" }
@@ -65,7 +81,7 @@ shadowJar {
 publishing {
     publications {
         create("shadow", MavenPublication) {
-            from(components["java"] as SoftwareComponent)
+            from(components["java"])
             artifactId = "decentholograms"
         }
     }
