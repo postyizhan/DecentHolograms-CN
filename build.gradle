@@ -3,6 +3,22 @@ subprojects {
 
     group = 'eu.decentsoftware.holograms'
 
+// 本地构建除了一点编码问题，不要介意这里（
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('charset', 'UTF-8')
+    options.charSet = 'UTF-8'
+}
+
+tasks.withType(ProcessResources) {
+    filteringCharset = 'UTF-8'
+}
+
     repositories {
         mavenCentral()
         maven { url = "https://repo.codemc.io/repository/nms/" }
@@ -12,6 +28,20 @@ subprojects {
         if (!project.path.endsWith(":shared")) {
             implementation project(":shared")
         }
+    }
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        options.encoding = "UTF-8"
     }
 
     java {
