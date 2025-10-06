@@ -1,9 +1,12 @@
-# Decent Holograms
+# Decent Holograms 中文版
+[![构建状态](https://github.com/YOUR_USERNAME/DecentHolograms-CN/actions/workflows/build.yml/badge.svg)](https://github.com/YOUR_USERNAME/DecentHolograms-CN/actions/workflows/build.yml)
 [![SpigotMC Downloads](https://img.shields.io/spiget/downloads/96927?label=Downloads) 
 ![SpigotMC Version](https://img.shields.io/spiget/version/96927?label=Release) 
 ![Tested Versions](https://img.shields.io/spiget/tested-versions/96927?label=Supports)](https://www.spigotmc.org/resources/96927/) 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
->A lightweight yet very powerful hologram plugin with many features and configuration options.
+>一个轻量级但功能强大的全息显示插件，拥有众多功能和配置选项。
+
+> **注意：** 这是 DecentHolograms 的中文汉化版本。原版项目请访问 [decentsoftware-eu/decentholograms](https://github.com/decentsoftware-eu/decentholograms)
 
 **Links:**
 - [Modrinth (Download)](https://modrinth.com/plugin/decentholograms)
