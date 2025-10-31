@@ -1,19 +1,5 @@
 package eu.decentsoftware.holograms.api.utils.items;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.UUID;
-import java.util.function.Function;
-
-import org.bukkit.SkullType;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.jetbrains.annotations.Nullable;
-
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
@@ -69,7 +55,16 @@ public final class SkullUtils {
      * @return The skull texture. (Base64)
      */
     @Nullable
+                        
     public static String getSkullTexture(@NonNull ItemStack itemStack) {
+        if (!(itemStack.getItemMeta() instanceof SkullMeta)) {
+            return null;
+        }
+
+        if (Version.after(Version.v1_21_R5)) {
+            return XSkull.of(itemStack).getProfileValue();
+        }
+
         Method propertyValueMethod;
         try {
             ItemMeta meta = itemStack.getItemMeta();
@@ -82,10 +77,14 @@ public final class SkullUtils {
                 profileField.setAccessible(true);
             }
             Object profileObject = profileField.get(meta);
-            if (profileObject == null) return null;
+            if (profileObject == null) {
+                return null;
+            }
 
             GameProfile profile = (GameProfile) (gameProfileFieldResolvableProfile == null ? profileObject : gameProfileFieldResolvableProfile.get(profileObject));
-            if (profile == null) return null;
+            if (profile == null) {
+                return null;
+            }
 
             if (valueResolver == null) {
                 try {
@@ -99,6 +98,7 @@ public final class SkullUtils {
                     valueResolver = property -> {
                         try {
                             return (String) propertyValueMethod.invoke(property);
+                    
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             Log.error("Failed to invoke Property#value", e);
                         }
@@ -110,7 +110,8 @@ public final class SkullUtils {
             PropertyMap properties = profile.getProperties();
             Collection<Property> property = properties.get("textures");
             if (property != null && !property.isEmpty()) {
-                return valueResolver.apply(property.iterator().next());
+                    // 
+                return  valueResolver.apply(property.iterator().next());
             }
         } catch (Exception e) {
             Log.error("An exception occurred while retrieving skull texture", e);
@@ -138,6 +139,15 @@ public final class SkullUtils {
      * @param texture   The new skull texture (Base64).
      */
     public static void setSkullTexture(@NonNull ItemStack itemStack, @NonNull String texture) {
+        if (!(itemStack.getItemMeta() instanceof SkullMeta)) {
+            return;
+        }
+
+        if (Version.after(Version.v1_21_R5)) {
+            XSkull.of(itemStack).profile(Profileable.detect(texture)).apply();
+            return;
+        }
+
         try {
             ItemMeta meta = itemStack.getItemMeta();
             if (meta instanceof SkullMeta) {
@@ -165,8 +175,11 @@ public final class SkullUtils {
                         profileField = meta.getClass().getDeclaredField("profile");
                         profileField.setAccessible(true);
                     }
+                        // 
                     profileField.set(meta, profile);
                 }
+                                
+                                        
             }
             itemStack.setItemMeta(meta);
 
@@ -176,6 +189,7 @@ public final class SkullUtils {
             }
         } catch (Exception e) {
             Log.error("An exception occurred while setting skull texture", e);
+                            
         }
     }
 
