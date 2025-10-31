@@ -1,9 +1,10 @@
 package eu.decentsoftware.holograms.api.utils.items;
 
+import com.cryptomorin.xseries.profiles.builder.XSkull;
+import com.cryptomorin.xseries.profiles.objects.Profileable;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
-
 import eu.decentsoftware.holograms.api.utils.Log;
 import eu.decentsoftware.holograms.api.utils.reflect.ReflectionUtil;
 import eu.decentsoftware.holograms.api.utils.reflect.Version;
@@ -11,6 +12,19 @@ import eu.decentsoftware.holograms.skin.SkinService;
 import eu.decentsoftware.holograms.skin.mojang.MojangSkinSource;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
+import org.bukkit.SkullType;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.Nullable;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.UUID;
+import java.util.function.Function;
 
 /**
  * Utility class for modifying the textures or owners or skull ItemStacks.
@@ -38,7 +52,8 @@ public final class SkullUtils {
         try {
             if (ReflectionUtil.checkClassExists(RESOLVABLE_PROFILE_CLASS_PATH)) {
                 Class<?> resolvableProfileClass = ReflectionUtil.getClass(RESOLVABLE_PROFILE_CLASS_PATH);
-                resolvableProfileConstructor = resolvableProfileClass == null ? null : resolvableProfileClass.getConstructor(GameProfile.class);
+                resolvableProfileConstructor = resolvableProfileClass == null ? null
+                        : resolvableProfileClass.getConstructor(GameProfile.class);
 
                 // find the game profile field in the resolvable profile class
                 gameProfileFieldResolvableProfile = ReflectionUtil.findField(resolvableProfileClass, GameProfile.class);
@@ -55,7 +70,7 @@ public final class SkullUtils {
      * @return The skull texture. (Base64)
      */
     @Nullable
-                        
+
     public static String getSkullTexture(@NonNull ItemStack itemStack) {
         if (!(itemStack.getItemMeta() instanceof SkullMeta)) {
             return null;
@@ -81,7 +96,8 @@ public final class SkullUtils {
                 return null;
             }
 
-            GameProfile profile = (GameProfile) (gameProfileFieldResolvableProfile == null ? profileObject : gameProfileFieldResolvableProfile.get(profileObject));
+            GameProfile profile = (GameProfile) (gameProfileFieldResolvableProfile == null ? profileObject
+                    : gameProfileFieldResolvableProfile.get(profileObject));
             if (profile == null) {
                 return null;
             }
@@ -92,13 +108,14 @@ public final class SkullUtils {
                     Property.class.getMethod("getValue");
                     valueResolver = Property::getValue;
                 } catch (NoSuchMethodException ignored) {
-                    // Since 1.20(.4?) the Property class is a record and utilizes record-style getter methods
-                    //noinspection JavaReflectionMemberAccess - method does exist in newer versions
+                    // Since 1.20(.4?) the Property class is a record and utilizes record-style
+                    // getter methods
+                    // noinspection JavaReflectionMemberAccess - method does exist in newer versions
                     propertyValueMethod = Property.class.getMethod("value");
                     valueResolver = property -> {
                         try {
                             return (String) propertyValueMethod.invoke(property);
-                    
+
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             Log.error("Failed to invoke Property#value", e);
                         }
@@ -110,8 +127,8 @@ public final class SkullUtils {
             PropertyMap properties = profile.getProperties();
             Collection<Property> property = properties.get("textures");
             if (property != null && !property.isEmpty()) {
-                    // 
-                return  valueResolver.apply(property.iterator().next());
+                //
+                return valueResolver.apply(property.iterator().next());
             }
         } catch (Exception e) {
             Log.error("An exception occurred while retrieving skull texture", e);
@@ -158,9 +175,12 @@ public final class SkullUtils {
                 properties.put("textures", property);
                 if (setProfileMethod == null && !initialized) {
                     try {
-                        // This method only exists in versions 1.16 and up. For older versions, we use reflection
+                        // This method only exists in versions 1.16 and up. For older versions, we use
+                        // reflection
                         // to set the profile field directly.
-                        setProfileMethod = meta.getClass().getDeclaredMethod("setProfile", resolvableProfileConstructor == null ? GameProfile.class : resolvableProfileConstructor.getDeclaringClass());
+                        setProfileMethod = meta.getClass().getDeclaredMethod("setProfile",
+                                resolvableProfileConstructor == null ? GameProfile.class
+                                        : resolvableProfileConstructor.getDeclaringClass());
                         setProfileMethod.setAccessible(true);
                     } catch (NoSuchMethodException e) {
                         // Server is running an older version.
@@ -169,17 +189,17 @@ public final class SkullUtils {
                 }
 
                 if (setProfileMethod != null) {
-                    setProfileMethod.invoke(meta, resolvableProfileConstructor == null ? profile : resolvableProfileConstructor.newInstance(profile));
+                    setProfileMethod.invoke(meta, resolvableProfileConstructor == null ? profile
+                            : resolvableProfileConstructor.newInstance(profile));
                 } else {
                     if (profileField == null) {
                         profileField = meta.getClass().getDeclaredField("profile");
                         profileField.setAccessible(true);
                     }
-                        // 
+                    //
                     profileField.set(meta, profile);
                 }
-                                
-                                        
+
             }
             itemStack.setItemMeta(meta);
 
@@ -189,7 +209,7 @@ public final class SkullUtils {
             }
         } catch (Exception e) {
             Log.error("An exception occurred while setting skull texture", e);
-                            
+
         }
     }
 
